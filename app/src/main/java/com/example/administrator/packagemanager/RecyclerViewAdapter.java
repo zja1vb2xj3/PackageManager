@@ -75,23 +75,16 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
         //일반 클릭 시 패키지 정보 설치날짜 및 용량 보여주기//현재는 버전만
         private void createPackageInfoDialog() {
-            LayoutInflater factory = LayoutInflater.from(context);
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-            final View view = factory.inflate(R.layout.dialog_index, null);
+            LayoutInflater factory = LayoutInflater.from(context);
+            final View view = factory.inflate(R.layout.dialog_packageinfo, null);
 
             ImageView packageIcon = (ImageView) view.findViewById(R.id.selectedPackageIcon);
+            TextView packageName = (TextView) view.findViewById(R.id.selectedPackageName);
             TextView packageInfo = (TextView) view.findViewById(R.id.selectedPackageInfo);
 
-            packageIcon.setImageDrawable(myPackage.getMyPackageIcon(dataList.get(getAdapterPosition())));
-            packageInfo.setText(
-                    String.format("%s\n %s\n", "패키지 이름", dataList.get(getAdapterPosition())) +
-                            String.format("%-5s : %s\n", "App 이름", myPackage.getApplicationAppName(dataList.get(getAdapterPosition()))) +
-                            String.format("%-5s : %s\n", "App 크기", myPackage.getApplicationInstalledFileSize(dataList.get(getAdapterPosition()))) +
-                            String.format("%s : %s\n", "App 버전", myPackage.getApplicationVersion(dataList.get(getAdapterPosition()))) +
-                            String.format("%s : %s\n", "설치 날짜", myPackage.getApplicationFirstInstalledTime(dataList.get(getAdapterPosition()))) +
-                            String.format("%s : %s\n", "수정 날짜", myPackage.getApplicationLastUpdatedTime(dataList.get(getAdapterPosition())))
-            );
+            setDialog(packageIcon, packageName, packageInfo);
 
             builder.setTitle("선택한 App 정보")
                     .setView(view)
@@ -121,10 +114,38 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             return true;
         }
 
+        private void setDialog(ImageView packageIcon, TextView packageName, TextView packageInfo) {
+            if (packageIcon != null)
+                packageIcon.setImageDrawable(myPackage.getMyPackageIcon(dataList.get(getAdapterPosition())));
+
+            if (packageName != null) {
+                packageName.setText(String.format("%s", dataList.get(getAdapterPosition())));
+            }
+
+            if (packageInfo != null) {
+                packageInfo.setText(
+                                "App 이름 : " + myPackage.getApplicationAppName(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "App 크기 : " + myPackage.getApplicationInstalledFileSize(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "App 버전 : " + myPackage.getApplicationVersion(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "설치 날짜 : " + myPackage.getApplicationFirstInstalledTime(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "수정 날짜 : " + myPackage.getApplicationLastUpdatedTime(dataList.get(getAdapterPosition())) + "\n\n"
+                );
+            }
+        }
+
+
         private void createAskedToRemoveDialog(View v) {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-            builder.setTitle("선택한 Package를 삭제 하시겠습니까?").setMessage(dataList.get(getAdapterPosition())).setCancelable(false)
+            LayoutInflater factory = LayoutInflater.from(context);
+            final View view = factory.inflate(R.layout.dialog_askedtoremove, null);
+
+            ImageView deletePackageIcon = (ImageView) view.findViewById(R.id.deletePackageIcon);
+            TextView deletePackageName = (TextView) view.findViewById(R.id.deletePackageName);
+
+            setDialog(deletePackageIcon, deletePackageName, null);
+
+            builder.setTitle("선택한 Package 를 삭제 하시겠습니까?").setView(view).setCancelable(false)
                     .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
