@@ -61,6 +61,8 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
         private ImageView packageIcon_ImageView;
         private Context context;
 
+        private ObserverModel observerModel;
+
         public ViewHolder(View view) {
             super(view);
             context = view.getContext();
@@ -72,7 +74,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             packageName_TextView = (TextView) view.findViewById(R.id.packageName);
             packageName_TextView.setOnClickListener(this);
             packageName_TextView.setOnLongClickListener(this);
-
+            observerModel = ObserverModel.getInstance();
         }
 
         //일반 클릭 시 패키지 정보 설치날짜 및 용량 보여주기//현재는 버전만
@@ -174,8 +176,15 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
         private boolean removePackage(int position) {
             try {
+                observerModel.setBeforeValue(dataList.size());
+
                 dataList.remove(position);
                 notifyItemRemoved(position);
+
+                observerModel.setAfterValue(dataList.size());
+                observerModel.addValueObserver(new Observer(context));
+                observerModel.changedOccureed();
+
                 return true;
             } catch (IndexOutOfBoundsException e) {
                 e.printStackTrace();

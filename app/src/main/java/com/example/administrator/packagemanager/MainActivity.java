@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Vector;
 
 public class MainActivity extends Activity {
-//커밋테스트
     private Vector<String> packageNames;
     private TextView packageCount_TextView;
 
@@ -35,10 +34,14 @@ public class MainActivity extends Activity {
         packageInitialization();
 
     }
-
+    //패키지 초기설정
     private void packageInitialization(){
         setPackageList();
         packageCount_TextView.setText("패키지 개수 = " + String.valueOf(packageNames.size()));
+
+        ObserverModel observerModel = ObserverModel.getInstance();
+        observerModel.setInitialValue(packageNames.size());
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecyclerViewAdapter(this, packageNames, packageCount_TextView);
         recyclerView.setAdapter(adapter);
@@ -53,7 +56,7 @@ public class MainActivity extends Activity {
                 +"패키지 개수 = " + String.valueOf(packageNames.size()), Toast.LENGTH_SHORT).show();
     }
 
-    //패키지 리스트 설정
+    //패키지 이름 받아오기
     private void setPackageList() {
         myPackage = MyPackage.getInstance(getApplicationContext());
         List<ApplicationInfo> myPackages = myPackage.getMyPackageName();//패키지를 가져옴
