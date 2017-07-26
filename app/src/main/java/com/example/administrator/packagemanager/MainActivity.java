@@ -33,17 +33,18 @@ public class MainActivity extends Activity {
 
         packageInitialization();
 
+        ObserverView observerView = ObserverView.getInstance();
+        observerView.setObserverTextView(packageCount_TextView);
     }
     //패키지 초기설정
     private void packageInitialization(){
         setPackageList();
-        packageCount_TextView.setText("패키지 개수 = " + String.valueOf(packageNames.size()));
 
         ObserverModel observerModel = ObserverModel.getInstance();
         observerModel.setInitialValue(packageNames.size());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RecyclerViewAdapter(this, packageNames, packageCount_TextView);
+        adapter = new RecyclerViewAdapter(this, packageNames);
         recyclerView.setAdapter(adapter);
     }
 

@@ -21,14 +21,12 @@ import java.util.List;
 class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private List<String> dataList = Collections.emptyList();
     private LayoutInflater layoutInflater;
-    private TextView packageCount_TextView;
     private MyPackage myPackage;
     private Context context;
 
-    public RecyclerViewAdapter(Context context, List<String> dataList, TextView packageCount) {
+    public RecyclerViewAdapter(Context context, List<String> dataList) {
         this.layoutInflater = LayoutInflater.from(context);
         this.dataList = dataList;
-        this.packageCount_TextView = packageCount;
         myPackage = MyPackage.getInstance(context);
     }
 
@@ -157,7 +155,6 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
                             if (removeSign != false) {
                                 Toast.makeText(v.getContext(), "선택한 패키지가 삭제되었습니다. \n패키지 개수 = " + dataList.size(), Toast.LENGTH_LONG).show();
-                                packageCount_TextView.setText("패키지 개수 = " + String.valueOf(dataList.size()));
                             } else
                                 Toast.makeText(v.getContext(), "패키지 삭제 중 오류가 발생하였습니다.", Toast.LENGTH_LONG).show();
                         }
@@ -182,7 +179,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
                 notifyItemRemoved(position);
 
                 observerModel.setAfterValue(dataList.size());
-                observerModel.addValueObserver(new Observer(context));
+                observerModel.addValueObserver(new Observer());
                 observerModel.changedOccureed();
 
                 return true;
