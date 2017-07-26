@@ -8,11 +8,9 @@ import android.graphics.drawable.Drawable;
 
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.SimpleTimeZone;
 
 
 public class MyPackage {
