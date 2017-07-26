@@ -124,7 +124,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
             if (packageInfo != null) {
                 packageInfo.setText(
-                                "App 이름 : " + myPackage.getApplicationAppName(dataList.get(getAdapterPosition())) + "\n\n" +
+                        "App 이름 : " + myPackage.getApplicationAppName(dataList.get(getAdapterPosition())) + "\n\n" +
                                 "App 크기 : " + myPackage.getApplicationInstalledFileSize(dataList.get(getAdapterPosition())) + "\n\n" +
                                 "App 버전 : " + myPackage.getApplicationVersion(dataList.get(getAdapterPosition())) + "\n\n" +
                                 "설치 날짜 : " + myPackage.getApplicationFirstInstalledTime(dataList.get(getAdapterPosition())) + "\n\n" +
@@ -181,6 +181,5 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             return false;
         }
     }
-
 
 }//end recyclerviewadapter
