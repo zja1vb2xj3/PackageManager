@@ -21,6 +21,7 @@ public class MainActivity extends Activity {
 
     private Button resetButton;
     private MyPackage myPackage;
+    private ObserverModel observerModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,9 @@ public class MainActivity extends Activity {
 
         ObserverView observerView = ObserverView.getInstance();
         observerView.setObserverTextView(packageCount_TextView);
+        observerModel = ObserverModel.getInstance();
+        observerModel.addValueObserver(new Observer());
+        observerModel.changedOccureed();
     }
     //패키지 초기설정
     private void packageInitialization(){
@@ -51,7 +55,10 @@ public class MainActivity extends Activity {
 
 
     private void resetButtonClick(View view) {
+        observerModel.setBeforeValue(adapter.getItemCount());
         packageInitialization();
+        observerModel.setAfterValue(packageNames.size());
+        observerModel.changedOccureed();
 
         Toast.makeText(getApplicationContext(), "초기화 작동"+"\n"
                 +"패키지 개수 = " + String.valueOf(packageNames.size()), Toast.LENGTH_SHORT).show();

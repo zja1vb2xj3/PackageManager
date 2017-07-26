@@ -73,6 +73,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             packageName_TextView.setOnClickListener(this);
             packageName_TextView.setOnLongClickListener(this);
             observerModel = ObserverModel.getInstance();
+            observerModel.addValueObserver(new Observer());
         }
 
         //일반 클릭 시 패키지 정보 설치날짜 및 용량 보여주기//현재는 버전만
@@ -179,7 +180,6 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
                 notifyItemRemoved(position);
 
                 observerModel.setAfterValue(dataList.size());
-                observerModel.addValueObserver(new Observer());
                 observerModel.changedOccureed();
 
                 return true;

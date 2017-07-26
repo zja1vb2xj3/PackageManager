@@ -44,7 +44,7 @@ public class ObserverModel {
     }
 
     public void changedOccureed(){
-        valueObservers.forEach(x -> x.onChanged(beforeValue, afterValue));
+        valueObservers.forEach(x -> x.onChanged(beforeValue, afterValue));//x = Observer
     }
 
     interface valueObserver{
