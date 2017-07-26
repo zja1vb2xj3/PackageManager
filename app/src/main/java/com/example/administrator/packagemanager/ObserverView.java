@@ -1,6 +1,5 @@
 package com.example.administrator.packagemanager;
 
-import android.view.View;
 import android.widget.TextView;
 
 /**

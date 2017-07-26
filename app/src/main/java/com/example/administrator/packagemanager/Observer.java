@@ -1,8 +1,6 @@
 package com.example.administrator.packagemanager;
 
-import android.content.Context;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by Administrator on 2017-07-27.
