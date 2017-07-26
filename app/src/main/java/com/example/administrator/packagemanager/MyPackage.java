@@ -78,7 +78,6 @@ public class MyPackage {
 
     public String getApplicationFirstInstalledTime(String packageName) {
         try {
-
             packageInfo = packageManager.getPackageInfo(packageName, 0);
             String firstInstalledTime = sdf.format(new Date(packageInfo.firstInstallTime));
 
@@ -108,9 +107,7 @@ public class MyPackage {
     public String getApplicationInstalledFileSize(String packageName) {
         try {
             ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, 0);
-
             File file = new File(applicationInfo.sourceDir);
-
             String fileSize = String.valueOf(file.length());
 
             return fileSize + " Byte";
