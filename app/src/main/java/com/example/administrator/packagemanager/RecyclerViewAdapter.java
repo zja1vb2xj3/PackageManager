@@ -22,7 +22,6 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     private List<String> dataList = Collections.emptyList();
     private LayoutInflater layoutInflater;
     private MyPackage myPackage;
-    private Context context;
 
     public RecyclerViewAdapter(Context context, List<String> dataList) {
         this.layoutInflater = LayoutInflater.from(context);
@@ -35,6 +34,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.recyclerview_row, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
+
         return viewHolder;
     }
 
@@ -57,6 +57,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private TextView packageName_TextView;
         private ImageView packageIcon_ImageView;
+
         private Context context;
 
         private ObserverModel observerModel;
@@ -72,20 +73,21 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             packageName_TextView = (TextView) view.findViewById(R.id.packageName);
             packageName_TextView.setOnClickListener(this);
             packageName_TextView.setOnLongClickListener(this);
+
             observerModel = ObserverModel.getInstance();
             observerModel.addValueObserver(new Observer());
         }
 
         //일반 클릭 시 패키지 정보 설치날짜 및 용량 보여주기//현재는 버전만
         private void createPackageInfoDialog() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
             LayoutInflater factory = LayoutInflater.from(context);
             final View view = factory.inflate(R.layout.dialog_packageinfo, null);
 
-            ImageView packageIcon = (ImageView) view.findViewById(R.id.selectedPackageIcon);
-            TextView packageName = (TextView) view.findViewById(R.id.selectedPackageName);
-            TextView packageInfo = (TextView) view.findViewById(R.id.selectedPackageInfo);
+            final ImageView packageIcon = (ImageView) view.findViewById(R.id.selectedPackageIcon);
+            final TextView packageName = (TextView) view.findViewById(R.id.selectedPackageName);
+            final TextView packageInfo = (TextView) view.findViewById(R.id.selectedPackageInfo);
 
             setDialog(packageIcon, packageName, packageInfo);
 
@@ -111,7 +113,6 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
         @Override
         public boolean onLongClick(View v) {
-
             createAskedToRemoveDialog(v);
 
             return true;
@@ -138,13 +139,13 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
 
         private void createAskedToRemoveDialog(View v) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-            LayoutInflater factory = LayoutInflater.from(context);
+            final LayoutInflater factory = LayoutInflater.from(context);
             final View view = factory.inflate(R.layout.dialog_askedtoremove, null);
 
-            ImageView deletePackageIcon = (ImageView) view.findViewById(R.id.deletePackageIcon);
-            TextView deletePackageName = (TextView) view.findViewById(R.id.deletePackageName);
+            final ImageView deletePackageIcon = (ImageView) view.findViewById(R.id.deletePackageIcon);
+            final TextView deletePackageName = (TextView) view.findViewById(R.id.deletePackageName);
 
             setDialog(deletePackageIcon, deletePackageName, null);
 

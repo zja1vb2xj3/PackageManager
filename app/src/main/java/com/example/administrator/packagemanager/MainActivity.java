@@ -27,9 +27,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         resetButton = (Button)findViewById(R.id.resetButton);
         resetButton.setOnClickListener(this::resetButtonClick);
+
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+
         packageCount_TextView = (TextView)findViewById(R.id.packageCount);
 
         packageInitialization();
@@ -69,6 +72,7 @@ public class MainActivity extends Activity {
         myPackage = MyPackage.getInstance(getApplicationContext());
         List<ApplicationInfo> myPackages = myPackage.getPackageName();//패키지를 가져옴
         packageNames = new Vector<>();
+
         for(ApplicationInfo mypackage : myPackages) {
             packageNames.add(mypackage.processName);
         }
