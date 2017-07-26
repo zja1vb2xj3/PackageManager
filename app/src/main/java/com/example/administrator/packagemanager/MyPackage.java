@@ -32,7 +32,7 @@ public class MyPackage {
     }
 
 
-    public List<ApplicationInfo> getMyPackageName() {
+    public List<ApplicationInfo> getPackageName() {
         List<ApplicationInfo> myPackageName = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
         return myPackageName;
     }
@@ -50,7 +50,7 @@ public class MyPackage {
     }
 
 
-    public Drawable getMyPackageIcon(String packageName) {
+    public Drawable getApplicationIcon(String packageName) {
 
         try {
             Drawable icon = packageManager.getApplicationIcon(packageName);

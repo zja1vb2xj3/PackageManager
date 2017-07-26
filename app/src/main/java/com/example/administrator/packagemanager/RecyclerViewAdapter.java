@@ -43,7 +43,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     public void onBindViewHolder(ViewHolder holder, int position) {
         String packageName = dataList.get(position);
         holder.packageName_TextView.setText(packageName);
-        holder.packageIcon_ImageView.setImageDrawable(myPackage.getMyPackageIcon(packageName));
+        holder.packageIcon_ImageView.setImageDrawable(myPackage.getApplicationIcon(packageName));
     }
 
     //1 아이탬 갯수 판단
@@ -119,7 +119,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
         private void setDialog(ImageView packageIcon, TextView packageName, TextView packageInfo) {
             if (packageIcon != null)
-                packageIcon.setImageDrawable(myPackage.getMyPackageIcon(dataList.get(getAdapterPosition())));
+                packageIcon.setImageDrawable(myPackage.getApplicationIcon(dataList.get(getAdapterPosition())));
 
             if (packageName != null) {
                 packageName.setText(String.format("%s", dataList.get(getAdapterPosition())));
