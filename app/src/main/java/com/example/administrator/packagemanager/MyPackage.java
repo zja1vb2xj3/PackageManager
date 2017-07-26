@@ -6,17 +6,17 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.SimpleTimeZone;
 
-
-/**
- * Created by ADMIN on 2017-07-25.
- */
 
 public class MyPackage {
+
 
     private static Context context;
     private static MyPackage myPackage;
@@ -26,9 +26,8 @@ public class MyPackage {
     private PackageInfo packageInfo;
 
 
-
-    public static MyPackage getInstance(Context context){
-        if(myPackage == null){
+    public static MyPackage getInstance(Context context) {
+        if (myPackage == null) {
             myPackage = new MyPackage();
         }
         packageManager = context.getPackageManager();
@@ -37,77 +36,92 @@ public class MyPackage {
     }
 
 
-    public List<ApplicationInfo> getMyPackageName(){
-        List<ApplicationInfo>myPackageName = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+    public List<ApplicationInfo> getMyPackageName() {
+        List<ApplicationInfo> myPackageName = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
         return myPackageName;
     }
 
-    public Drawable getMyPackageIcon(String packageName){
 
-        try{
+    public String getApplicationAppName(String packageName) {
+        try {
+            String appName = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA));
+            return appName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public Drawable getMyPackageIcon(String packageName) {
+
+
+        try {
             Drawable icon = packageManager.getApplicationIcon(packageName);
             return icon;
-        }
-        catch (PackageManager.NameNotFoundException e){
+        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public String getApplicationVersion(String packageName){
-        try{
+    public String getApplicationVersion(String packageName) {
+        try {
             packageInfo = packageManager.getPackageInfo(packageName, 0);
 
+
             return "버젼 = " + packageInfo.versionName;
-        }
-        catch (PackageManager.NameNotFoundException e){
+        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public String getApplicationFirstInstalledTime(String packageName){
+
+    public String getApplicationFirstInstalledTime(String packageName) {
         try {
+
 
             packageInfo = packageManager.getPackageInfo(packageName, 0);
             String firstInstalledTime = sdf.format(new Date(packageInfo.firstInstallTime));
 
+
             return firstInstalledTime;
-        }
-        catch (PackageManager.NameNotFoundException e){
+        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public String getApplicationLastUpdatedTime(String packageName){
+
+    public String getApplicationLastUpdatedTime(String packageName) {
         try {
             packageInfo = packageManager.getPackageInfo(packageName, 0);
             String lastUpdatedTime = sdf.format(new Date(packageInfo.lastUpdateTime));
 
+
             return lastUpdatedTime;
-        }
-        catch (PackageManager.NameNotFoundException e){
+        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public String getApplicationInstalledFileSize(String packageName){
-        try{
+
+    public String getApplicationInstalledFileSize(String packageName) {
+        try {
             ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, 0);
             File file = new File(applicationInfo.sourceDir);
 
+
             String fileSize = String.valueOf(file.length());
 
+
             return fileSize + " Byte";
-        }
-        catch (PackageManager.NameNotFoundException e){
+        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
-
-
 
 }
