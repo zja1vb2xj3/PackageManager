@@ -15,8 +15,6 @@ import java.util.List;
 
 public class MyPackage {
 
-
-    private static Context context;
     private static MyPackage myPackage;
     private static PackageManager packageManager;
     private static SimpleDateFormat sdf;
