@@ -13,7 +13,7 @@ public class ObserverModel {
     private int initialValue;
     private int beforeValue;
     private int afterValue;
-    private Vector<valueObserver> valueObservers;
+    private Vector<IValueObserver> IValueObservers;
 
     public static ObserverModel getInstance(){
         if(observerModel == null){
@@ -22,9 +22,9 @@ public class ObserverModel {
         return observerModel;
     }
 
-    public void addValueObserver(valueObserver observer){
-        valueObservers = new Vector<>();
-        valueObservers.add(observer);
+    public void addValueObserver(IValueObserver observer){
+        IValueObservers = new Vector<>();
+        IValueObservers.add(observer);
     }
 
     public void setInitialValue(int initialValue) {
@@ -44,10 +44,10 @@ public class ObserverModel {
     }
 
     public void changedOccur(){
-        valueObservers.forEach(x -> x.onChanged(beforeValue, afterValue));//x = Observer
+        IValueObservers.forEach(x -> x.onChanged(beforeValue, afterValue));//x = Observer
     }
 
-    interface valueObserver{
+    interface IValueObserver {
         void onChanged(int beforeValue, int afterValue);
     }
 

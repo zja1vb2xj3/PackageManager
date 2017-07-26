@@ -6,7 +6,7 @@ import android.widget.TextView;
  * Created by Administrator on 2017-07-27.
  */
 
-public class Observer implements ObserverModel.valueObserver {
+public class Observer implements ObserverModel.IValueObserver {
 
     private ObserverModel observerModel;
 
