@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Vector;
 
 public class MainActivity extends Activity {
-
+//커밋테스트
     private Vector<String> packageNames;
     private TextView packageCount_TextView;
 
