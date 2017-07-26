@@ -43,7 +43,7 @@ public class ObserverModel {
         return initialValue;
     }
 
-    public void changedOccureed(){
+    public void changedOccur(){
         valueObservers.forEach(x -> x.onChanged(beforeValue, afterValue));//x = Observer
     }
 

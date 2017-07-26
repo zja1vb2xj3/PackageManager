@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
         observerView.setObserverTextView(packageCount_TextView);
         observerModel = ObserverModel.getInstance();
         observerModel.addValueObserver(new Observer());
-        observerModel.changedOccureed();
+        observerModel.changedOccur();
     }
     //패키지 초기설정
     private void packageInitialization(){
@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
         observerModel.setBeforeValue(adapter.getItemCount());
         packageInitialization();
         observerModel.setAfterValue(packageNames.size());
-        observerModel.changedOccureed();
+        observerModel.changedOccur();
 
         Toast.makeText(getApplicationContext(), "초기화 작동"+"\n"
                 +"패키지 개수 = " + String.valueOf(packageNames.size()), Toast.LENGTH_SHORT).show();

@@ -180,7 +180,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
                 notifyItemRemoved(position);
 
                 observerModel.setAfterValue(dataList.size());
-                observerModel.changedOccureed();
+                observerModel.changedOccur();
 
                 return true;
             } catch (IndexOutOfBoundsException e) {
