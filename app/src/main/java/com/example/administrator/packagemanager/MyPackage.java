@@ -52,9 +52,9 @@ public class MyPackage {
 
     public Drawable getMyPackageIcon(String packageName) {
 
-
         try {
             Drawable icon = packageManager.getApplicationIcon(packageName);
+
             return icon;
 
         } catch (PackageManager.NameNotFoundException e) {
@@ -66,7 +66,6 @@ public class MyPackage {
     public String getApplicationVersion(String packageName) {
         try {
             packageInfo = packageManager.getPackageInfo(packageName, 0);
-
 
             return packageInfo.versionName;
 
@@ -80,10 +79,8 @@ public class MyPackage {
     public String getApplicationFirstInstalledTime(String packageName) {
         try {
 
-
             packageInfo = packageManager.getPackageInfo(packageName, 0);
             String firstInstalledTime = sdf.format(new Date(packageInfo.firstInstallTime));
-
 
             return firstInstalledTime;
 
@@ -98,7 +95,6 @@ public class MyPackage {
         try {
             packageInfo = packageManager.getPackageInfo(packageName, 0);
             String lastUpdatedTime = sdf.format(new Date(packageInfo.lastUpdateTime));
-
 
             return lastUpdatedTime;
 
