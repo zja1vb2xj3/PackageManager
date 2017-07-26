@@ -46,6 +46,7 @@ public class MyPackage {
         try {
             String appName = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA));
             return appName;
+
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -59,6 +60,7 @@ public class MyPackage {
         try {
             Drawable icon = packageManager.getApplicationIcon(packageName);
             return icon;
+
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -70,7 +72,8 @@ public class MyPackage {
             packageInfo = packageManager.getPackageInfo(packageName, 0);
 
 
-            return "버젼 = " + packageInfo.versionName;
+            return packageInfo.versionName;
+
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -87,6 +90,7 @@ public class MyPackage {
 
 
             return firstInstalledTime;
+
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -101,6 +105,7 @@ public class MyPackage {
 
 
             return lastUpdatedTime;
+
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -111,13 +116,13 @@ public class MyPackage {
     public String getApplicationInstalledFileSize(String packageName) {
         try {
             ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, 0);
-            File file = new File(applicationInfo.sourceDir);
 
+            File file = new File(applicationInfo.sourceDir);
 
             String fileSize = String.valueOf(file.length());
 
-
             return fileSize + " Byte";
+
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

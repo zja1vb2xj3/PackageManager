@@ -60,17 +60,19 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
         private TextView packageName_TextView;
         private ImageView packageIcon_ImageView;
         private Context context;
+
         public ViewHolder(View view) {
             super(view);
             context = view.getContext();
 
-            packageIcon_ImageView = (ImageView)view.findViewById(R.id.packageIcon);
+            packageIcon_ImageView = (ImageView) view.findViewById(R.id.packageIcon);
 
             packageName_TextView = (TextView) view.findViewById(R.id.packageName);
             packageName_TextView.setOnClickListener(this);
             packageName_TextView.setOnLongClickListener(this);
 
         }
+
         //일반 클릭 시 패키지 정보 설치날짜 및 용량 보여주기//현재는 버전만
         private void createPackageInfoDialog() {
             LayoutInflater factory = LayoutInflater.from(context);
@@ -79,13 +81,17 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             final View view = factory.inflate(R.layout.dialog_index, null);
 
             ImageView packageIcon = (ImageView) view.findViewById(R.id.selectedPackageIcon);
-            TextView packageInfo = (TextView)view.findViewById(R.id.selectedPackageInfo);
+            TextView packageInfo = (TextView) view.findViewById(R.id.selectedPackageInfo);
 
             packageIcon.setImageDrawable(myPackage.getMyPackageIcon(dataList.get(getAdapterPosition())));
             packageInfo.setText(
-                    String.format("%10s, %s" , "패키지 명 = ", dataList.get(getAdapterPosition())+
-                            "\n"+"버젼 = " + myPackage.getApplicationVersion(dataList.get(getAdapterPosition()))+
-                            "\n"));
+                    String.format("%s\n %s\n", "패키지 이름", dataList.get(getAdapterPosition())) +
+                            String.format("%-5s : %s\n", "App 이름", myPackage.getApplicationAppName(dataList.get(getAdapterPosition()))) +
+                            String.format("%-5s : %s\n", "App 크기", myPackage.getApplicationInstalledFileSize(dataList.get(getAdapterPosition()))) +
+                            String.format("%s : %s\n", "App 버전", myPackage.getApplicationVersion(dataList.get(getAdapterPosition()))) +
+                            String.format("%s : %s\n", "설치 날짜", myPackage.getApplicationFirstInstalledTime(dataList.get(getAdapterPosition()))) +
+                            String.format("%s : %s\n", "수정 날짜", myPackage.getApplicationLastUpdatedTime(dataList.get(getAdapterPosition())))
+            );
 
             builder.setTitle("선택한 App 정보")
                     .setView(view)
@@ -122,14 +128,13 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
                     .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            boolean sign = removePackage(getAdapterPosition());
+                            boolean removeSign = removePackage(getAdapterPosition());
 
-                            if(sign != false) {
-                                Toast.makeText(v.getContext(), "선택한 패키지가 삭제되었습니다. \n패키지 게수 = " + dataList.size(), Toast.LENGTH_LONG).show();
+                            if (removeSign != false) {
+                                Toast.makeText(v.getContext(), "선택한 패키지가 삭제되었습니다. \n패키지 개수 = " + dataList.size(), Toast.LENGTH_LONG).show();
                                 packageCount_TextView.setText("패키지 개수 = " + String.valueOf(dataList.size()));
-                            }
-                            else
-                                Toast.makeText(v.getContext(),"패키지 삭제 중 오류가 발생하였습니다.",Toast.LENGTH_LONG).show();
+                            } else
+                                Toast.makeText(v.getContext(), "패키지 삭제 중 오류가 발생하였습니다.", Toast.LENGTH_LONG).show();
                         }
                     })
                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {

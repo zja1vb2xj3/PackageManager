@@ -47,9 +47,10 @@ public class MainActivity extends Activity {
 
 
     private void resetButtonClick(View view) {
+        packageInitialization();
+
         Toast.makeText(getApplicationContext(), "초기화 작동"+"\n"
                 +"패키지 개수 = " + String.valueOf(packageNames.size()), Toast.LENGTH_SHORT).show();
-        packageInitialization();
     }
 
     //패키지 리스트 설정
