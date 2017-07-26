@@ -66,6 +66,8 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             context = view.getContext();
 
             packageIcon_ImageView = (ImageView) view.findViewById(R.id.packageIcon);
+            packageIcon_ImageView.setOnClickListener(this);
+            packageIcon_ImageView.setOnClickListener(this);
 
             packageName_TextView = (TextView) view.findViewById(R.id.packageName);
             packageName_TextView.setOnClickListener(this);
