@@ -33,12 +33,12 @@ public class MyPackage {
 
 
     public List<ApplicationInfo> getPackageName() {
-        List<ApplicationInfo> myPackageName = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
-        return myPackageName;
+        List<ApplicationInfo> myPackageNames = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+        return myPackageNames;
     }
 
 
-    public String getApplicationAppName(String packageName) {
+    public String getPackageAppName(String packageName) {
         try {
             String appName = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA));
             return appName;
@@ -50,7 +50,7 @@ public class MyPackage {
     }
 
 
-    public Drawable getApplicationIcon(String packageName) {
+    public Drawable getPackageIcon(String packageName) {
 
         try {
             Drawable icon = packageManager.getApplicationIcon(packageName);
@@ -63,7 +63,7 @@ public class MyPackage {
         return null;
     }
 
-    public String getApplicationVersion(String packageName) {
+    public String getPackageVersion(String packageName) {
         try {
             packageInfo = packageManager.getPackageInfo(packageName, 0);
 
@@ -76,7 +76,7 @@ public class MyPackage {
     }
 
 
-    public String getApplicationFirstInstalledTime(String packageName) {
+    public String getPackageFirstInstallTime(String packageName) {
         try {
             packageInfo = packageManager.getPackageInfo(packageName, 0);
             String firstInstalledTime = sdf.format(new Date(packageInfo.firstInstallTime));
@@ -90,7 +90,7 @@ public class MyPackage {
     }
 
 
-    public String getApplicationLastUpdatedTime(String packageName) {
+    public String getPackageLastUpdateTime(String packageName) {
         try {
             packageInfo = packageManager.getPackageInfo(packageName, 0);
             String lastUpdatedTime = sdf.format(new Date(packageInfo.lastUpdateTime));
@@ -104,7 +104,7 @@ public class MyPackage {
     }
 
 
-    public String getApplicationInstalledFileSize(String packageName) {
+    public String getPackageInstalledFileSize(String packageName) {
         try {
             ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, 0);
             File file = new File(applicationInfo.sourceDir);

@@ -43,7 +43,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     public void onBindViewHolder(ViewHolder holder, int position) {
         String packageName = dataList.get(position);
         holder.packageName_TextView.setText(packageName);
-        holder.packageIcon_ImageView.setImageDrawable(myPackage.getApplicationIcon(packageName));
+        holder.packageIcon_ImageView.setImageDrawable(myPackage.getPackageIcon(packageName));
     }
 
     //1 아이탬 갯수 판단
@@ -120,7 +120,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
         private void setDialog(ImageView packageIcon, TextView packageName, TextView packageInfo) {
             if (packageIcon != null)
-                packageIcon.setImageDrawable(myPackage.getApplicationIcon(dataList.get(getAdapterPosition())));
+                packageIcon.setImageDrawable(myPackage.getPackageIcon(dataList.get(getAdapterPosition())));
 
             if (packageName != null) {
                 packageName.setText(String.format("%s", dataList.get(getAdapterPosition())));
@@ -128,11 +128,11 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
             if (packageInfo != null) {
                 packageInfo.setText(
-                        "App 이름 : " + myPackage.getApplicationAppName(dataList.get(getAdapterPosition())) + "\n\n" +
-                                "App 크기 : " + myPackage.getApplicationInstalledFileSize(dataList.get(getAdapterPosition())) + "\n\n" +
-                                "App 버전 : " + myPackage.getApplicationVersion(dataList.get(getAdapterPosition())) + "\n\n" +
-                                "설치 날짜 : " + myPackage.getApplicationFirstInstalledTime(dataList.get(getAdapterPosition())) + "\n\n" +
-                                "수정 날짜 : " + myPackage.getApplicationLastUpdatedTime(dataList.get(getAdapterPosition())) + "\n\n"
+                        "App 이름 : " + myPackage.getPackageAppName(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "App 크기 : " + myPackage.getPackageInstalledFileSize(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "App 버전 : " + myPackage.getPackageVersion(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "설치 날짜 : " + myPackage.getPackageFirstInstallTime(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "수정 날짜 : " + myPackage.getPackageLastUpdateTime(dataList.get(getAdapterPosition())) + "\n\n"
                 );
             }
         }
