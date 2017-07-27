@@ -78,7 +78,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             observerModel.addValueObserver(new Observer());
         }
 
-        //일반 클릭 시 패키지 정보 설치날짜 및 용량 보여주기//현재는 버전만
+        //일반 클릭 시 패키지 정보 보여주기
         private void createPackageInfoDialog() {
             final AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -91,7 +91,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
             setDialog(packageIcon, packageName, packageInfo);
 
-            builder.setTitle("선택한 App 정보")
+            builder.setTitle("선택한 Package 정보")
                     .setView(view)
                     .setCancelable(false)
                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
