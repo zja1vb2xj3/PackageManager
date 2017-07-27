@@ -18,8 +18,8 @@ public class Observer implements ObserverModel.IValueObserver {
     public void onChanged(int beforeValue, int afterValue) {
         int initialValue = observerModel.getInitialValue();
 
-        ObserverView observerView = ObserverView.getInstance();
-        TextView observerTextView = observerView.getObserverTextView();
+        ObserverTextView observerView = ObserverTextView.getInstance();
+        TextView observerTextView = observerView.getText();
 
         observerTextView.setText(
                 "초기 패키지 수 : " + String.valueOf(initialValue) + "\n" +
