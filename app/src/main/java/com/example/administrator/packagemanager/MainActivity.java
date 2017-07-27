@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
         packageInitialization();
 
         ObserverTextView observerTextView = ObserverTextView.getInstance();
-        observerTextView.setText(packageCount_TextView);
+        observerTextView.setTextView(packageCount_TextView);
         observerModel = ObserverModel.getInstance();
         observerModel.addValueObserver(new Observer());
         observerModel.changedOccur();

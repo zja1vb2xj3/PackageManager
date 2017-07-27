@@ -18,11 +18,11 @@ public class ObserverTextView {
         return observerTextView;
     }
 
-    public TextView getText() {
+    public TextView getTextView() {
         return textView;
     }
 
-    public void setText(TextView textView) {
+    public void setTextView(TextView textView) {
         this.textView = textView;
     }
 }

@@ -19,7 +19,7 @@ public class Observer implements ObserverModel.IValueObserver {
         int initialValue = observerModel.getInitialValue();
 
         ObserverTextView observerView = ObserverTextView.getInstance();
-        TextView observerTextView = observerView.getText();
+        TextView observerTextView = observerView.getTextView();
 
         observerTextView.setText(
                 "초기 패키지 수 : " + String.valueOf(initialValue) + "\n" +
