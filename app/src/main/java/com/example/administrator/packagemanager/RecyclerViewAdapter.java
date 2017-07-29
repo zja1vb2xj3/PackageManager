@@ -22,10 +22,12 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     private List<String> dataList = Collections.emptyList();
     private LayoutInflater layoutInflater;
     private MyPackage myPackage;
+    private TextView packageCount_TextView;
 
-    public RecyclerViewAdapter(Context context, List<String> dataList) {
+    public RecyclerViewAdapter(Context context, List<String> dataList, TextView textView) {
         this.layoutInflater = LayoutInflater.from(context);
         this.dataList = dataList;
+        this.packageCount_TextView = textView;
         myPackage = MyPackage.getInstance(context);
     }
 
@@ -60,7 +62,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
         private Context context;
 
-        private ObserverModel observerModel;
+        private PackageObserverModel packageObserverModel;
 
         public ViewHolder(View view) {
             super(view);
@@ -74,8 +76,8 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             packageName_TextView.setOnClickListener(this);
             packageName_TextView.setOnLongClickListener(this);
 
-            observerModel = ObserverModel.getInstance();
-            observerModel.addValueObserver(new Observer());
+            packageObserverModel = PackageObserverModel.getInstance();
+            packageObserverModel.addValueObserver(new PackageObserver(packageCount_TextView));
         }
 
         //일반 클릭 시 패키지 정보 보여주기
@@ -175,13 +177,13 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
         private boolean removePackage(int position) {
             try {
-                observerModel.setBeforeValue(dataList.size());
+                packageObserverModel.setBeforeValue(dataList.size());
 
                 dataList.remove(position);
                 notifyItemRemoved(position);
 
-                observerModel.setAfterValue(dataList.size());
-                observerModel.changedOccur();
+                packageObserverModel.setAfterValue(dataList.size());
+                packageObserverModel.changedOccur();
 
                 return true;
             } catch (IndexOutOfBoundsException e) {

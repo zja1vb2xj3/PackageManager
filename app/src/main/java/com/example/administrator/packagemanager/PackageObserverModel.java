@@ -6,20 +6,20 @@ import java.util.Vector;
  * Created by Administrator on 2017-07-27.
  */
 
-public class ObserverModel {
+public class PackageObserverModel {
 
-    private static ObserverModel observerModel;
+    private static PackageObserverModel packageObserverModel;
 
     private int initialValue;
     private int beforeValue;
     private int afterValue;
     private Vector<IValueObserver> IValueObservers;
 
-    public static ObserverModel getInstance(){
-        if(observerModel == null){
-            observerModel = new ObserverModel();
+    public static PackageObserverModel getInstance(){
+        if(packageObserverModel == null){
+            packageObserverModel = new PackageObserverModel();
         }
-        return observerModel;
+        return packageObserverModel;
     }
 
     public void addValueObserver(IValueObserver observer){
@@ -44,7 +44,7 @@ public class ObserverModel {
     }
 
     public void changedOccur(){
-        IValueObservers.forEach(x -> x.onChanged(beforeValue, afterValue));//x = Observer
+        IValueObservers.forEach(x -> x.onChanged(beforeValue, afterValue));//
     }
 
     interface IValueObserver {

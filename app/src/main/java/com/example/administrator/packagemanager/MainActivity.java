@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 
     private Button resetButton;
     private MyPackage myPackage;
-    private ObserverModel observerModel;
+    private PackageObserverModel packageObserverModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,31 +37,29 @@ public class MainActivity extends Activity {
 
         packageInitialization();
 
-        ObserverTextView observerTextView = ObserverTextView.getInstance();
-        observerTextView.setTextView(packageCount_TextView);
-        observerModel = ObserverModel.getInstance();
-        observerModel.addValueObserver(new Observer());
-        observerModel.changedOccur();
+        packageObserverModel = PackageObserverModel.getInstance();
+        packageObserverModel.addValueObserver(new PackageObserver(packageCount_TextView));
+        packageObserverModel.changedOccur();
     }
     //패키지 초기설정
     private void packageInitialization(){
         setPackageList();
 
-        ObserverModel observerModel = ObserverModel.getInstance();
-        observerModel.setInitialValue(packageNames.size());
+        PackageObserverModel packageObserverModel = PackageObserverModel.getInstance();
+        packageObserverModel.setInitialValue(packageNames.size());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RecyclerViewAdapter(this, packageNames);
+        adapter = new RecyclerViewAdapter(this, packageNames, packageCount_TextView);
         recyclerView.setAdapter(adapter);
     }
 
 
 
     private void resetButtonClick(View view) {
-        observerModel.setBeforeValue(adapter.getItemCount());
+        packageObserverModel.setBeforeValue(adapter.getItemCount());
         packageInitialization();
-        observerModel.setAfterValue(packageNames.size());
-        observerModel.changedOccur();
+        packageObserverModel.setAfterValue(packageNames.size());
+        packageObserverModel.changedOccur();
 
         Toast.makeText(getApplicationContext(), "초기화 작동"+"\n"
                 +"패키지 개수 = " + String.valueOf(packageNames.size()), Toast.LENGTH_SHORT).show();
