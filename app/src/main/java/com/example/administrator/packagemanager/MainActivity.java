@@ -49,7 +49,10 @@ public class MainActivity extends Activity {
         packageObserverModel.setInitialValue(packageNames.size());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //LayoutManager : RecyclerView내에 item view들의 크기 측정 및 위치 지정
+        //언제 view들을 재사용해야하는지 결정
         adapter = new RecyclerViewAdapter(this, packageNames, packageCount_TextView);
+        //Adapter : RecyclerView내에 보여지는 view들의 data set을 binding해주는 역할
         recyclerView.setAdapter(adapter);
     }
 

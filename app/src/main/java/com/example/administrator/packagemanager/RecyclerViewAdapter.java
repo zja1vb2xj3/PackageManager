@@ -54,7 +54,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
         holder.packageIcon_ImageView.setImageDrawable(myPackage.getPackageIcon(packageName));
     }
 
-    //각 item의 view 정보를 갖고있는 class
+    //RecyclerView내에 각 item의 view 정보를 갖고있는 class
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private TextView packageName_TextView;
         private ImageView packageIcon_ImageView;
