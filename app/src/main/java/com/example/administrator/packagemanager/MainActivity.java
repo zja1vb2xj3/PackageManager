@@ -44,8 +44,7 @@ public class MainActivity extends Activity {
     //패키지 초기설정
     private void packageInitialization(){
         acceptPackageList();
-
-        PackageObserverModel packageObserverModel = PackageObserverModel.getInstance();
+        
         packageObserverModel.setInitialValue(packageNames.size());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
