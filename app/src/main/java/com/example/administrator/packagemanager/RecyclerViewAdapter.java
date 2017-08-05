@@ -79,6 +79,11 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             packageObserverModel.addObserver(new PackageObserver(packageCount_TextView));
         }
 
+        @Override
+        public void onClick(View v) {
+            createPackageInfoDialog();
+        }
+
         //onClick 시 패키지 정보 보여주기
         private void createPackageInfoDialog() {
             final AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -108,35 +113,12 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
         }
 
         @Override
-        public void onClick(View v) {
-            createPackageInfoDialog();
-        }
-
-        @Override
         public boolean onLongClick(View v) {
             createAskedToRemoveDialog(v);
 
             return true;
         }
 
-        private void setDialog(ImageView packageIcon, TextView packageName, TextView packageInfo) {
-            if (packageIcon != null)
-                packageIcon.setImageDrawable(myPackage.getPackageIcon(dataList.get(getAdapterPosition())));
-
-            if (packageName != null) {
-                packageName.setText(String.format("%s", dataList.get(getAdapterPosition())));
-            }
-
-            if (packageInfo != null) {
-                packageInfo.setText(
-                        "App 이름 : " + myPackage.getPackageAppName(dataList.get(getAdapterPosition())) + "\n\n" +
-                                "App 크기 : " + myPackage.getPackageInstalledFileSize(dataList.get(getAdapterPosition())) + "\n\n" +
-                                "App 버전 : " + myPackage.getPackageVersion(dataList.get(getAdapterPosition())) + "\n\n" +
-                                "설치 날짜 : " + myPackage.getPackageFirstInstallTime(dataList.get(getAdapterPosition())) + "\n\n" +
-                                "수정 날짜 : " + myPackage.getPackageLastUpdateTime(dataList.get(getAdapterPosition())) + "\n\n"
-                );
-            }
-        }
 
         //longClick 시 패키지 삭제 물음
         private void createAskedToRemoveDialog(View v) {
@@ -174,17 +156,37 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             dialog.show();
         }
 
+        private void setDialog(ImageView packageIcon, TextView packageName, TextView packageInfo) {
+            if (packageIcon != null)
+                packageIcon.setImageDrawable(myPackage.getPackageIcon(dataList.get(getAdapterPosition())));
+
+            if (packageName != null) {
+                packageName.setText(String.format("%s", dataList.get(getAdapterPosition())));
+            }
+
+            if (packageInfo != null) {
+                packageInfo.setText(
+                        "App 이름 : " + myPackage.getPackageAppName(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "App 크기 : " + myPackage.getPackageInstalledFileSize(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "App 버전 : " + myPackage.getPackageVersion(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "설치 날짜 : " + myPackage.getPackageFirstInstallTime(dataList.get(getAdapterPosition())) + "\n\n" +
+                                "수정 날짜 : " + myPackage.getPackageLastUpdateTime(dataList.get(getAdapterPosition())) + "\n\n"
+                );
+            }
+        }
+
         private boolean removePackage(int position) {
             try {
                 packageObserverModel.setBeforeValue(dataList.size());
 
                 dataList.remove(position);
-                notifyItemRemoved(position);
+                notifyItemRemoved(position); //등록된 옵저버에 이전에 위치햇던 항목이 데이트 세트에서 제거되었음을 알림.
 
                 packageObserverModel.setAfterValue(dataList.size());
                 packageObserverModel.changedOccur();
 
                 return true;
+
             } catch (IndexOutOfBoundsException e) {
                 e.printStackTrace();
             }

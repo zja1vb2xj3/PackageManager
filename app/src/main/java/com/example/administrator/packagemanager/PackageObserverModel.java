@@ -44,7 +44,7 @@ public class PackageObserverModel {
     }
 
     public void changedOccur(){
-        IValueObservers.forEach(x -> x.onChanged(beforeValue, afterValue));//
+        IValueObservers.forEach(x -> x.onChanged(beforeValue, afterValue));//x는 옵저버 개수
     }
 
     interface IValueObserver {
