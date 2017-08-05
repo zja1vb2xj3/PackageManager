@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
     }
     //패키지 초기설정
     private void packageInitialization(){
-        setPackageList();
+        acceptPackageList();
 
         PackageObserverModel packageObserverModel = PackageObserverModel.getInstance();
         packageObserverModel.setInitialValue(packageNames.size());
@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
     }
 
     //패키지 이름 받아오기
-    private void setPackageList() {
+    private void acceptPackageList() {
         myPackage = MyPackage.getInstance(getApplicationContext());
         List<ApplicationInfo> myPackages = myPackage.getPackageName();//패키지를 가져옴
         packageNames = new Vector<>();
