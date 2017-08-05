@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
         packageCount_TextView = (TextView)findViewById(R.id.packageCount);
 
         packageObserverModel = PackageObserverModel.getInstance();
-        packageObserverModel.addValueObserver(new PackageObserver(packageCount_TextView));
+        packageObserverModel.addObserver(new PackageObserver(packageCount_TextView));
 
         packageInitialization();
     }

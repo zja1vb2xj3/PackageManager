@@ -76,7 +76,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             packageName_TextView.setOnLongClickListener(this);
 
             packageObserverModel = PackageObserverModel.getInstance();
-            packageObserverModel.addValueObserver(new PackageObserver(packageCount_TextView));
+            packageObserverModel.addObserver(new PackageObserver(packageCount_TextView));
         }
 
         //onClick 시 패키지 정보 보여주기

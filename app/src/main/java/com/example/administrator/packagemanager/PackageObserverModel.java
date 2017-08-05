@@ -22,7 +22,7 @@ public class PackageObserverModel {
         return packageObserverModel;
     }
 
-    public void addValueObserver(IValueObserver observer){
+    public void addObserver(IValueObserver observer){
         IValueObservers = new Vector<>();
         IValueObservers.add(observer);
     }
