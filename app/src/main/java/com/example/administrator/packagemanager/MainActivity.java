@@ -35,17 +35,17 @@ public class MainActivity extends Activity {
 
         packageCount_TextView = (TextView)findViewById(R.id.packageCount);
 
-        packageInitialization();
-
         packageObserverModel = PackageObserverModel.getInstance();
         packageObserverModel.addValueObserver(new PackageObserver(packageCount_TextView));
-        packageObserverModel.changedOccur();
+
+        packageInitialization();
     }
     //패키지 초기설정
     private void packageInitialization(){
         acceptPackageList();
-        
+
         packageObserverModel.setInitialValue(packageNames.size());
+        packageObserverModel.changedOccur();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //LayoutManager : RecyclerView내에 item view들의 크기 측정 및 위치 지정
