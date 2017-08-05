@@ -31,6 +31,12 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
         myPackage = MyPackage.getInstance(context);
     }
 
+    //1 아이탬 갯수 판단
+    @Override
+    public int getItemCount() {
+        return dataList.size();
+    }
+
     //2 viewType에 해당하는 viewHolder를 생성하여 return
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -48,13 +54,6 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
         holder.packageIcon_ImageView.setImageDrawable(myPackage.getPackageIcon(packageName));
     }
 
-    //1 아이탬 갯수 판단
-    @Override
-    public int getItemCount() {
-        return dataList.size();
-    }
-
-
     //각 item의 view 정보를 갖고있는 class
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private TextView packageName_TextView;
@@ -70,7 +69,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
             packageIcon_ImageView = (ImageView) view.findViewById(R.id.packageIcon);
             packageIcon_ImageView.setOnClickListener(this);
-            packageIcon_ImageView.setOnClickListener(this);
+            packageIcon_ImageView.setOnLongClickListener(this);
 
             packageName_TextView = (TextView) view.findViewById(R.id.packageName);
             packageName_TextView.setOnClickListener(this);
@@ -80,7 +79,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             packageObserverModel.addValueObserver(new PackageObserver(packageCount_TextView));
         }
 
-        //일반 클릭 시 패키지 정보 보여주기
+        //onClick 시 패키지 정보 보여주기
         private void createPackageInfoDialog() {
             final AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -139,7 +138,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             }
         }
 
-
+        //longClick 시 패키지 삭제 물음
         private void createAskedToRemoveDialog(View v) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
