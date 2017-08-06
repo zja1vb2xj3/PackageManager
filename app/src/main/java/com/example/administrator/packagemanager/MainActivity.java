@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
     //패키지 이름 받아오기
     private void acceptPackageList() {
         myPackage = MyPackage.getInstance(getApplicationContext());
-        List<ApplicationInfo> myPackages = myPackage.getPackageName();//패키지를 가져옴
+        List<ApplicationInfo> myPackages = myPackage.getPackageNames();//패키지를 가져옴
         packageNames = new Vector<>();
 
         for(ApplicationInfo mypackage : myPackages) {

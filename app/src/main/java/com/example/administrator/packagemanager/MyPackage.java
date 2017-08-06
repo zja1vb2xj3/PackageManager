@@ -32,7 +32,7 @@ public class MyPackage {
     }
 
 
-    public List<ApplicationInfo> getPackageName() {
+    public List<ApplicationInfo> getPackageNames() {
         List<ApplicationInfo> myPackageNames = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
         return myPackageNames;
     }
