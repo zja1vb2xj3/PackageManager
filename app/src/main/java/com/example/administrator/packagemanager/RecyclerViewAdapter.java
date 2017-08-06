@@ -19,7 +19,7 @@ import java.util.List;
  */
 //RecyclerView 내의 모든 item view 데이터 관리
 class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private List<String> dataList = Collections.emptyList();
+    private List<String> dataList;
     private LayoutInflater layoutInflater;
     private MyPackage myPackage;
     private TextView packageCount_TextView;
