@@ -24,10 +24,10 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     private MyPackage myPackage;
     private TextView packageCount_TextView;
 
-    public RecyclerViewAdapter(Context context, List<String> dataList, TextView textView) {
+    public RecyclerViewAdapter(Context context, List<String> dataList, TextView packageCount_TextView) {
         this.layoutInflater = LayoutInflater.from(context);
         this.dataList = dataList;
-        this.packageCount_TextView = textView;
+        this.packageCount_TextView = packageCount_TextView;
         myPackage = MyPackage.getInstance(context);
     }
 
