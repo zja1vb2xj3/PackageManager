@@ -67,7 +67,6 @@ public class MainActivity extends Activity {
                 createAskedToRemoveDialog(packageName);
             }
 
-
         });
         //Adapter : RecyclerView내에 보여지는 view들의 data set을 binding해주는 역할
         recyclerView.setAdapter(adapter);
