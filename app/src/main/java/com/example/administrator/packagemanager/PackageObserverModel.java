@@ -8,27 +8,27 @@ import java.util.Vector;
 
 public class PackageObserverModel {
 
-    private static PackageObserverModel packageObserverModel;
+//    private static PackageObserverModel packageObserverModel;
 
-    private int initialValue;
+    private static int initialValue;
     private int beforeValue;
     private int afterValue;
     private Vector<IValueObserver> IValueObservers;
-
-    public static PackageObserverModel getInstance(){
-        if(packageObserverModel == null){
-            packageObserverModel = new PackageObserverModel();
-        }
-        return packageObserverModel;
-    }
+//
+//    public static PackageObserverModel getInstance(){
+//        if(packageObserverModel == null){
+//            packageObserverModel = new PackageObserverModel();
+//        }
+//        return packageObserverModel;
+//    }
 
     public void addObserver(IValueObserver observer){
         IValueObservers = new Vector<>();
         IValueObservers.add(observer);
     }
 
-    public void setInitialValue(int initialValue) {
-        this.initialValue = initialValue;
+    public static void setInitialValue(int value) {
+        initialValue = value;
     }
 
     public void setBeforeValue(int beforeValue) {

@@ -12,12 +12,8 @@ public class PackageObserver implements PackageObserverModel.IValueObserver {
     private TextView packageCount_TextView;
 
     public PackageObserver(TextView textView) {
-        packageObserverModel = PackageObserverModel.getInstance();
+        packageObserverModel = new PackageObserverModel();
         this.packageCount_TextView = textView;
-    }
-
-    public TextView getPackageCount_TextView() {
-        return packageCount_TextView;
     }
 
     public void setPackageCount_TextView(TextView packageCount_TextView) {

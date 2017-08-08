@@ -82,7 +82,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             packageName_TextView.setOnClickListener(this);
             packageName_TextView.setOnLongClickListener(this);
 
-            packageObserverModel = PackageObserverModel.getInstance();
+            packageObserverModel = new PackageObserverModel();
             packageObserverModel.addObserver(new PackageObserver(packageCount_TextView));
 
         }
