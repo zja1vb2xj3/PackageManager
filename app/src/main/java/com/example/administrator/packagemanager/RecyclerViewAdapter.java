@@ -100,22 +100,15 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             return true;
         }
 
-         boolean notifyToRemoveViewItem(int position) {
-            try {
-                packageObserverModel.setBeforeValue(dataList.size());
+         void notifyToRemoveViewItem(int position) {
+             packageObserverModel.setBeforeValue(dataList.size());
 
-                notifyItemRemoved(position); //등록된 옵저버에 이전에 위치햇던 항목이 데이트 세트에서 제거되었음을 알림.
+             notifyItemRemoved(position); //등록된 옵저버에 이전에 위치햇던 항목이 데이트 세트에서 제거되었음을 알림.
 
-                packageObserverModel.setAfterValue(dataList.size());
-                packageObserverModel.changedOccur();
+             packageObserverModel.setAfterValue(dataList.size());
+             packageObserverModel.changedOccur();
 
-                return true;
-
-            } catch (IndexOutOfBoundsException e) {
-                e.printStackTrace();
-            }
-            return false;
-        }
+         }
 
     }//end ViewHolder
 
