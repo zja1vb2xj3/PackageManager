@@ -14,18 +14,20 @@ import java.util.List;
 public class MyPackage {
 
     private static MyPackage myPackage;
-    private static PackageManager packageManager;
-    private static SimpleDateFormat sdf;
+    private PackageManager packageManager;
+    private SimpleDateFormat sdf;
 
     private PackageInfo packageInfo;
 
+    public MyPackage(Context context){
+        packageManager = context.getPackageManager();
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    }
 
     public static MyPackage getInstance(Context context) {
         if (myPackage == null) {
-            myPackage = new MyPackage();
+            myPackage = new MyPackage(context);
         }
-        packageManager = context.getPackageManager();
-        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         return myPackage;
     }
 //
