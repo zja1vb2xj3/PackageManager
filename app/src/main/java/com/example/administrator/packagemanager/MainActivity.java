@@ -81,10 +81,10 @@ public class MainActivity extends Activity {
         final LayoutInflater factory = LayoutInflater.from(this);
         final View view = factory.inflate(R.layout.dialog_askedtoremove, null);
 
-        final ImageView deletePackageIcon = (ImageView) view.findViewById(R.id.deletePackageIcon);
-        final TextView deletePackageName = (TextView) view.findViewById(R.id.deletePackageName);
+        final ImageView deletePackageIconImageView = (ImageView) view.findViewById(R.id.deletePackageIcon);
+        final TextView deletePackageTextView = (TextView) view.findViewById(R.id.deletePackageName);
 
-        setDialog(deletePackageIcon,deletePackageName,null, packageName);
+        setDialog(deletePackageIconImageView, deletePackageTextView, null, packageName);
 
         builder.setTitle("선택한 Package 를 삭제 하시겠습니까?").setView(view).setCancelable(false)
                 .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
@@ -111,16 +111,16 @@ public class MainActivity extends Activity {
     }
 
 
-    private void setDialog(ImageView packageIcon, TextView packageName, TextView packageInfo, String pakageName) {
-        if (packageIcon != null)
-            packageIcon.setImageDrawable(myPackage.getPackageIcon(pakageName));
+    private void setDialog(ImageView iconImageView, TextView packageNameTextView, TextView packageInfoTextView, String pakageName) {
+        if (iconImageView != null)
+            iconImageView.setImageDrawable(myPackage.getPackageIcon(pakageName));
 
-        if (packageName != null) {
-            packageName.setText(String.format("%s", pakageName));
+        if (packageNameTextView != null) {
+            packageNameTextView.setText(String.format("%s", pakageName));
         }
 
-        if (packageInfo != null) {
-            packageInfo.setText(
+        if (packageInfoTextView != null) {
+            packageInfoTextView.setText(
                     "App 이름 : " + myPackage.getPackageAppName(pakageName) + "\n\n" +
                             "App 크기 : " + myPackage.getPackageInstalledFileSize(pakageName) + "\n\n" +
                             "App 버전 : " + myPackage.getPackageVersion(pakageName) + "\n\n" +
@@ -131,17 +131,17 @@ public class MainActivity extends Activity {
     }
 
     //onClick 시 패키지 정보 보여주기
-    private void createPackageInfoDialog(String pakageName) {
+    private void createPackageInfoDialog(String packageName) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         LayoutInflater factory = LayoutInflater.from(this);
         final View view = factory.inflate(R.layout.dialog_packageinfo, null);
 
-        final ImageView packageIcon = (ImageView) view.findViewById(R.id.selectedPackageIcon);
-        final TextView packageName = (TextView) view.findViewById(R.id.selectedPackageName);
-        final TextView packageInfo = (TextView) view.findViewById(R.id.selectedPackageInfo);
+        final ImageView deletePackageIconImageView = (ImageView) view.findViewById(R.id.selectedPackageIcon);
+        final TextView packageNameTextView = (TextView) view.findViewById(R.id.selectedPackageName);
+        final TextView packageInfoTextView = (TextView) view.findViewById(R.id.selectedPackageInfo);
 
-        setDialog(packageIcon, packageName, packageInfo, pakageName);
+        setDialog(deletePackageIconImageView, packageNameTextView, packageInfoTextView, packageName);
 
         builder.setTitle("선택한 Package 정보")
                 .setView(view)
