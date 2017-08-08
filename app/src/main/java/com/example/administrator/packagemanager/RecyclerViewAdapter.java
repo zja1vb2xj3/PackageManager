@@ -69,13 +69,10 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
         private TextView packageName_TextView;
         private ImageView packageIcon_ImageView;
 
-        private Context context;
-
         private PackageObserverModel packageObserverModel;
 
         public ViewHolder(View view) {
             super(view);
-            context = view.getContext();
 
             packageIcon_ImageView = (ImageView) view.findViewById(R.id.packageIcon);
             packageIcon_ImageView.setOnClickListener(this);
