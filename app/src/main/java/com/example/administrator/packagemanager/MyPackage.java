@@ -28,7 +28,7 @@ public class MyPackage {
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         return myPackage;
     }
-
+//
 
     public List<ApplicationInfo> getPackageNames() {
         List<ApplicationInfo> myPackageNames = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);

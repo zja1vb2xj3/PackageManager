@@ -177,7 +177,7 @@ public class MainActivity extends Activity {
             packageNames.add(mypackage.processName);
         }
     }
-
+//
     private void setPackageCountTextView(int initialValue, int beforeValue, int afterValue) {
         this.packageCount_TextView.setText(
                         "초기 패키지 수 : " + String.valueOf(initialValue) + "\n" +

@@ -111,7 +111,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     public void setOnCreateDialogListener(OnCreateDialogListener OnCreateDialogListener) {
         this.OnCreateDialogListener = OnCreateDialogListener;
     }
-
+//
     interface OnCreateDialogListener {
         void onPackageInfoDialog(String packageName);
 
