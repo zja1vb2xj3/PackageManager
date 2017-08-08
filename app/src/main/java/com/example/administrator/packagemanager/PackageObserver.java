@@ -25,9 +25,9 @@ public class PackageObserver implements PackageObserverModel.IValueObserver {
         int initialValue = packageObserverModel.getInitialValue();
 
         packageCount_TextView.setText(
-                "초기 패키지 수 : " + String.valueOf(initialValue) + "\n" +
-                "이전 패키지 수 : " + String.valueOf(beforeValue) + "\n" +
-                "변경 패키지 수 : " + String.valueOf(afterValue)
+                        "초기 패키지 수 : " + String.valueOf(initialValue) + "\n" +
+                        "이전 패키지 수 : " + String.valueOf(beforeValue) + "\n" +
+                        "변경 패키지 수 : " + String.valueOf(afterValue)
         );
 
     }

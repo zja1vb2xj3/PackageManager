@@ -22,7 +22,7 @@ public class PackageObserverModel {
 //        return packageObserverModel;
 //    }
 
-    public void addObserver(IValueObserver observer){
+    public void addObserver(IValueObserver observer) {
         IValueObservers = new Vector<>();
         IValueObservers.add(observer);
     }
@@ -43,7 +43,7 @@ public class PackageObserverModel {
         return initialValue;
     }
 
-    public void changedOccur(){
+    public void changedOccur() {
         IValueObservers.forEach(x -> x.onChanged(beforeValue, afterValue));//x는 옵저버 개수
     }
 
