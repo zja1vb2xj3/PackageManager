@@ -89,13 +89,13 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
         @Override
         public void onClick(View v) {
-            createDialogListener.onPackageInfoDialog(dataList.get(getAdapterPosition()));
+            CreateDialogListener.onPackageInfoDialog(dataList.get(getAdapterPosition()));
         }
 
 
         @Override
         public boolean onLongClick(View v) {
-            createDialogListener.onAskedToRemoveDialog(dataList.get(getAdapterPosition()));
+            CreateDialogListener.onAskedToRemoveDialog(dataList.get(getAdapterPosition()));
             clickPosition = getAdapterPosition();
             return true;
         }
@@ -112,13 +112,13 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
     }//end ViewHolder
 
-    private createDialogListener createDialogListener;
+    private CreateDialogListener CreateDialogListener;
 
-    public void setCreateDialogListener(RecyclerViewAdapter.createDialogListener createDialogListener) {
-        this.createDialogListener = createDialogListener;
+    public void setCreateDialogListener(CreateDialogListener CreateDialogListener) {
+        this.CreateDialogListener = CreateDialogListener;
     }
 
-    interface createDialogListener{
+    interface CreateDialogListener {
         void onPackageInfoDialog(String packageName);
         void onAskedToRemoveDialog(String pakageName);
     }

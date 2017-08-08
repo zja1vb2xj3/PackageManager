@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
         //언제 view들을 재사용해야하는지 결정
         adapter = new RecyclerViewAdapter(this, packageNames, packageCount_TextView);
 
-        adapter.setCreateDialogListener(new RecyclerViewAdapter.createDialogListener() {
+        adapter.setCreateDialogListener(new RecyclerViewAdapter.CreateDialogListener() {
             @Override
             public void onPackageInfoDialog(String packageName) {
                 createPackageInfoDialog(packageName);
