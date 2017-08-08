@@ -5,8 +5,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;

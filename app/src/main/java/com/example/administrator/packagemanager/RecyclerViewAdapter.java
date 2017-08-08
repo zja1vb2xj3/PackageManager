@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.List;
 
 /**
@@ -18,14 +17,12 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
     private List<String> dataList;
     private LayoutInflater layoutInflater;
     private MyPackage myPackage;
-    private TextView packageCount_TextView;
     private int clickPosition;
     private ViewHolder viewHolder;
 
-    public RecyclerViewAdapter(Context context, List<String> dataList, TextView packageCount_TextView) {
+    public RecyclerViewAdapter(Context context, List<String> dataList) {
         this.layoutInflater = LayoutInflater.from(context);
         this.dataList = dataList;
-        this.packageCount_TextView = packageCount_TextView;
         myPackage = MyPackage.getInstance(context);
     }
 
@@ -69,7 +66,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
         private TextView packageName_TextView;
         private ImageView packageIcon_ImageView;
 
-        private PackageObserverModel packageObserverModel;
+        private PackageCountModel packageModel;
 
         public ViewHolder(View view) {
             super(view);
@@ -82,9 +79,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             packageName_TextView.setOnClickListener(this);
             packageName_TextView.setOnLongClickListener(this);
 
-            packageObserverModel = new PackageObserverModel();
-            packageObserverModel.addObserver(new PackageObserver(packageCount_TextView));
-
+            packageModel = PackageCountModel.getInstance();
         }
 
         @Override
@@ -101,12 +96,11 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
         }
 
         void notifyToRemoveViewItem(int position) {
-            packageObserverModel.setBeforeValue(dataList.size());
+            packageModel.setBeforeValue(dataList.size());
 
             notifyItemRemoved(position); //등록된 옵저버에 이전에 위치햇던 항목이 데이트 세트에서 제거되었음을 알림.
 
-            packageObserverModel.setAfterValue(dataList.size());
-            packageObserverModel.changedOccur();
+            packageModel.setAfterValue(dataList.size());
 
         }
 
