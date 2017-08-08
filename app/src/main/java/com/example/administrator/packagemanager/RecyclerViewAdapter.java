@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Vector;
 
 /**
  * Created by ADMIN on 2017-07-25.
@@ -59,7 +58,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
     public boolean removeDataList(int position){
         dataList.remove(position);
-        viewHolder.removeViewItem(position);
+        viewHolder.notifyToRemoveViewItem(position);
 
         return true;
     }
@@ -104,7 +103,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             return true;
         }
 
-         boolean removeViewItem(int position) {
+         boolean notifyToRemoveViewItem(int position) {
             try {
                 packageObserverModel.setBeforeValue(dataList.size());
 
