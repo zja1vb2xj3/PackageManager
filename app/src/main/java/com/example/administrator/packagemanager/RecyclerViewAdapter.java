@@ -101,7 +101,6 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
         public boolean onLongClick(View v) {
             createDialogListener.onAskedToRemoveDialog(dataList.get(getAdapterPosition()));
             clickPosition = getAdapterPosition();
-            notifyDataSetChanged();
             return true;
         }
 
