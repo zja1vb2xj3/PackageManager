@@ -56,7 +56,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
         return clickPosition;
     }
 
-    public boolean removeDataList(int position){
+    public boolean removeDataList(int position) {
         dataList.remove(position);
         viewHolder.notifyToRemoveViewItem(position);
 
@@ -100,15 +100,15 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
             return true;
         }
 
-         void notifyToRemoveViewItem(int position) {
-             packageObserverModel.setBeforeValue(dataList.size());
+        void notifyToRemoveViewItem(int position) {
+            packageObserverModel.setBeforeValue(dataList.size());
 
-             notifyItemRemoved(position); //등록된 옵저버에 이전에 위치햇던 항목이 데이트 세트에서 제거되었음을 알림.
+            notifyItemRemoved(position); //등록된 옵저버에 이전에 위치햇던 항목이 데이트 세트에서 제거되었음을 알림.
 
-             packageObserverModel.setAfterValue(dataList.size());
-             packageObserverModel.changedOccur();
+            packageObserverModel.setAfterValue(dataList.size());
+            packageObserverModel.changedOccur();
 
-         }
+        }
 
     }//end ViewHolder
 
@@ -120,6 +120,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewH
 
     interface CreateDialogListener {
         void onPackageInfoDialog(String packageName);
+
         void onAskedToRemoveDialog(String pakageName);
     }
 
